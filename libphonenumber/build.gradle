@@ -1,0 +1,111 @@
+apply plugin: 'com.android.library'
+//apply plugin: 'maven-publish'
+//apply plugin: 'signing'
+
+def artifactName = rootProject.name
+group rootProject.group
+version rootProject.version
+
+//sourceCompatibility = JavaVersion.VERSION_1_6
+//targetCompatibility = JavaVersion.VERSION_1_6
+
+android {
+    namespace 'io.michaelrocks.libphonenumber.android'
+    compileSdk projectCompileSdkVersion
+
+    defaultConfig {
+        minSdk projectMinSdkVersion
+//        targetSdk projectTargetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+//    variantFilter { variant ->
+//        if (variant.buildType.name != 'release') {
+//            variant.setIgnore(true)
+//        }
+//    }
+
+//    publishing {
+//        singleVariant('release') {
+//            withSourcesJar()
+//            withJavadocJar()
+//        }
+//    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lint {
+        abortOnError false
+    }
+}
+
+dependencies {
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+}
+
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            release(MavenPublication) {
+//                from components.release
+//                artifactId artifactName
+//                pom {
+//                    name = 'libphonenumber-android'
+//                    description = 'An Android port of Google\'s libphonenumber.'
+//                    inceptionYear = '2016'
+//                    url = 'https://github.com/michaelrocks/libphonenumber-android'
+//                    packaging = 'aar'
+//
+//                    licenses {
+//                        license {
+//                            name = 'The Apache License, Version 2.0'
+//                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                            distribution = 'repo'
+//                        }
+//                    }
+//                    developers {
+//                        developer {
+//                            id = 'MichaelRocks'
+//                            name = 'Michael Rozumyanskiy'
+//                            email = 'michael.rozumyanskiy@gmail.com'
+//                        }
+//                    }
+//                    scm {
+//                        connection = 'scm:git:git://github.com/michaelrocks/libphonenumber-android.git'
+//                        developerConnection = 'scm:git:ssh://git@github.com/michaelrocks/libphonenumber-android.git'
+//                        url = 'https://github.com/michaelrocks/libphonenumber-android'
+//                    }
+//                }
+//            }
+//        }
+//
+//        repositories {
+//            if (project.hasProperty('mavenCentralRepositoryUsername') && project.hasProperty('mavenCentralRepositoryPassword')) {
+//                maven {
+//                    name 'Sonatype'
+//                    url 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+//                    credentials {
+//                        username mavenCentralRepositoryUsername
+//                        password mavenCentralRepositoryPassword
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//    signing {
+//        sign publishing.publications.release
+//    }
+//}

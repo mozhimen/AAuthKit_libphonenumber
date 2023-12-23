@@ -1,55 +1,60 @@
 buildscript {
-  group = 'io.michaelrocks'
-  version = '8.13.26'
+    group = 'io.michaelrocks'
+    version = '8.13.26'
 
-  ext.projectCompileSdkVersion = 34
-  ext.projectBuildToolsVersion = '34.0.0'
-  ext.projectMinSdkVersion = 14
-  ext.projectTargetSdkVersion = 34
+    ext.projectCompileSdkVersion = 33
+    ext.projectMinSdkVersion = 14
+    ext.projectTargetSdkVersion = 33
 
-  ext.androidToolsVersion = '8.1.3'
+    ext.androidToolsVersion = '7.3.1'
 
-  ext.junitVersion = '4.13.2'
-  ext.mockitoVersion = '5.7.0'
+    ext.junitVersion = '4.13.2'
+    ext.mockitoVersion = '5.7.0'
 
-  ext.androidxEspressoVersion = '3.5.1'
-  ext.androidxTestRulesVersion = '1.5.0'
-  ext.androidxTestRunnerVersion = '1.5.2'
-  ext.androidxTestExtJunitVersion = '1.1.5'
+    ext.androidxEspressoVersion = '3.5.1'
+    ext.androidxTestRulesVersion = '1.5.0'
+    ext.androidxTestRunnerVersion = '1.5.2'
+    ext.androidxTestExtJunitVersion = '1.1.5'
 
-  repositories {
-    google()
-    mavenCentral()
-  }
+    repositories {
+        gradlePluginPortal()
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://maven.aliyun.com/repository/grails-core' }
+        maven { url 'https://gitee.com/liuchaoya/libcommon/raw/master/repository/' }
+        maven { url "https://repo.eclipse.org/content/repositories/paho-snapshots/" }
+        maven { url 'https://developer.huawei.com/repo/' }
+        maven { url "https://jitpack.io" }
+        maven { url 'https://www.jitpack.io' }
+        mavenCentral()
+        google()
+    }
 
-  dependencies {
-    classpath "com.android.tools.build:gradle:$androidToolsVersion"
-  }
-}
-
-allprojects {
-  repositories {
-    google()
-    mavenCentral()
-  }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$androidToolsVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0"
+    }
 }
 
 task clean(type: Delete) {
-  delete rootProject.layout.buildDirectory
+    delete rootProject.layout.buildDirectory
 }
 
 allprojects { project ->
-  def publishPropertiesFile = rootProject.file('publish.properties')
-  if (publishPropertiesFile.exists()) {
-    def localProperties = new Properties()
-    publishPropertiesFile.withInputStream { stream -> localProperties.load(stream) }
-    localProperties.each { property ->
-      if (property.key == "signing.secretKeyRingFile") {
-        // If this is the key ring, treat it as a relative path
-        project.ext.set(property.key, rootProject.file(property.value).absolutePath)
-      } else {
-        project.ext.set(property.key, property.value)
-      }
+    def publishPropertiesFile = rootProject.file('publish.properties')
+    if (publishPropertiesFile.exists()) {
+        def localProperties = new Properties()
+        publishPropertiesFile.withInputStream { stream -> localProperties.load(stream) }
+        localProperties.each { property ->
+            if (property.key == "signing.secretKeyRingFile") {
+                // If this is the key ring, treat it as a relative path
+                project.ext.set(property.key, rootProject.file(property.value).absolutePath)
+            } else {
+                project.ext.set(property.key, property.value)
+            }
+        }
     }
-  }
 }

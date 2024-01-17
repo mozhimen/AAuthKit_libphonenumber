@@ -5,7 +5,7 @@ android {
     compileSdk projectCompileSdkVersion
 
     defaultConfig {
-        minSdk 19
+        minSdk 24
         targetSdk projectTargetSdkVersion
 
         applicationId "io.michaelrocks.libphonenumber.android.sample"

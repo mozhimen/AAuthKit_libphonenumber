@@ -20,9 +20,10 @@ dependencyResolutionManagement {
 
 rootProject.name = 'AAuthKit_libphonenumber'
 
-include ':libphonenumber'
 include ':app'
 include ':authk_libphonenumber'
+include ':libphonenumber'
+
 //SwiftKit
 include ':SwiftKit'
 project(':SwiftKit').projectDir = new File("C:\\Users\\${System.getenv().get("USERNAME")}\\Documents\\GitHub\\SwiftKit")

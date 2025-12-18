@@ -33,6 +33,8 @@ android {
 
 dependencies {
     implementation project(':authk_libphonenumber')
+    implementation project(':ASwiftKit:basick')
+    implementation project(':ASwiftKit:uik')
 
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoVersion"
     androidTestImplementation "androidx.test:rules:$androidxTestRulesVersion"

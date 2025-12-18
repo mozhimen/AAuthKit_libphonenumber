@@ -19,9 +19,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = 'AAuthKit_libphonenumber'
-include ':app'
-include ':authk_libphonenumber'
-include ':libphonenumber'
+
 //ALibKit_Google
 include ':ALibKit_Google'
 project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")
@@ -47,4 +45,9 @@ include ':ASwiftKit'
 project(':ASwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ASwiftKit")
 include ':ASwiftKit:basick'
 include ':ASwiftKit:xmlk'
-include ':ASwiftKit:bindk'
+include ':ASwiftKit:uik'
+include ':ASwiftKit:uik:databinding'
+//
+include ':app'
+include ':authk_libphonenumber'
+include ':libphonenumber'

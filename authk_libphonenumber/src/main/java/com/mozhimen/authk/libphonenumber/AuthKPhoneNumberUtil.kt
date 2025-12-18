@@ -2,8 +2,8 @@ package com.mozhimen.authk.libphonenumber
 
 import android.content.Context
 import android.util.Log
-import com.mozhimen.basick.utilk.bases.IUtilK
-import com.mozhimen.basick.utilk.kotlin.text.complementStartPlus
+import com.mozhimen.kotlin.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.kotlin.text.join_sta_plus
 import io.michaelrocks.libphonenumber.android.NumberParseException
 import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
 
@@ -29,7 +29,7 @@ object AuthKPhoneNumberUtil : IUtilK {
         Log.d(TAG, "isPhoneNumberValid: $phoneNumber/$countryCode")
         val phoneUtil: PhoneNumberUtil = PhoneNumberUtil.createInstance(context)
         try {
-            val numberProto = phoneUtil.parse("$countryCode$phoneNumber".complementStartPlus(), countryCode)
+            val numberProto = phoneUtil.parse("$countryCode$phoneNumber".join_sta_plus(), countryCode)
             return phoneUtil.isValidNumber(numberProto)
         } catch (e: NumberParseException) {
             e.printStackTrace()
